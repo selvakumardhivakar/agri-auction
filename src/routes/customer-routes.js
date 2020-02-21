@@ -1,16 +1,16 @@
 const express = require('express');
 const multer = require('multer');
 const sharp = require('sharp');
-const Farmer = require('../models/farmer');
-const authFarmer = require('../middlewares/auth-farmer');
+const Customer = require('../models/customer');
+const authCustomer = require('../middlewares/auth-customer');
 const router = new express.Router();
 
 router.post('/register', async (req, res) => {
-  const farmer = new Farmer(req.body);
+  const customer = new Customer(req.body);
   try {
-    await farmer.save();
-    const token = await farmer.generateAuthToken();
-    res.status(201).send({ farmer: farmer, token });
+    await customer.save();
+    const token = await customer.generateAuthToken();
+    res.status(201).send({ customer, token });
   } catch (e) {
     res.status(400).send(e);
   }
@@ -18,15 +18,15 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const farmer = await Farmer.findByCredentials(req.body.username, req.body.password);
-    const token = await farmer.generateAuthToken();
-    res.send({ farmer, token });
+    const customer = await Customer.findByCredentials(req.body.username, req.body.password);
+    const token = await customer.generateAuthToken();
+    res.send({ customer, token });
   } catch (e) {
     res.status(400).send(e);
   }
 });
 
-router.post('/logout', authFarmer, async (req, res) => {
+router.post('/logout', authCustomer, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token;

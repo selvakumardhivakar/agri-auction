@@ -1,0 +1,5 @@
+Twilio_number = +12036978387
+
+Account SID = AC5a11ec766c004f5e6d182f4b0ea4fa4c
+
+Auth token = 75c355c0e8b67ee0f22e98056209955f

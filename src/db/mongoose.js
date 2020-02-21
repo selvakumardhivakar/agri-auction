@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 // MongoDB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/auction', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', () => console.log('Connected successfully!'));
+mongoose
+  .connect('mongodb://127.0.0.1:27017/auction', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log('MongoDB successfully connected!'))
+  .catch((err) => console.log(err));
 
 module.exports = mongoose;

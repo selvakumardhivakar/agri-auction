@@ -7,7 +7,13 @@ const farmerSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+    farmerid: {
+      type: String,
+      required: true,
       trim: true,
       unique: true,
     },
