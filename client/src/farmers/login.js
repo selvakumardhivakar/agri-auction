@@ -2,12 +2,11 @@ import React from 'react';
 
 import axios from 'axios';
 
-export default class farmerLogin extends React.Component {
+class farmerLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-
       password: '',
     };
   }
@@ -71,3 +70,5 @@ export default class farmerLogin extends React.Component {
     );
   }
 }
+
+export default farmerLogin;

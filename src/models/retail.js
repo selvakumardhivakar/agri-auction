@@ -3,13 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const auctionSchema = new mongoose.Schema({
-  auctionname: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
+const retailSchema = new mongoose.Schema({
   productname: {
     type: String,
     required: true,
@@ -20,8 +14,9 @@ const auctionSchema = new mongoose.Schema({
   },
   baseprice: {
     type: Number,
+    required: true,
   },
 });
 
-const Auction = mongoose.model('Auction', auctionSchema);
-module.exports = Auction;
+const Retail = mongoose.model('Retail', retailSchema);
+module.exports = Retail;
